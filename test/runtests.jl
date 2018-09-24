@@ -1,5 +1,6 @@
 
 import JuliaPackageWithRustDep
+using Test
 
 # void
 JuliaPackageWithRustDep.rustdylib_printhello()
