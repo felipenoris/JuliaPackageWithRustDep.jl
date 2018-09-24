@@ -11,6 +11,14 @@ function rustdylib_abs_i64(n::Int64)
     ccall((:rustdylib_abs_i64, librustdylib), Int64, (Int64,), n)
 end
 
+function rustdylib_abs_f32(n::Float32)
+	ccall((:rustdylib_abs_f32, librustdylib), Float32, (Float32,), n)
+end
+
+function rustdylib_abs_f64(n::Float64)
+	ccall((:rustdylib_abs_f64, librustdylib), Float64, (Float64,), n)
+end
+
 function rustdylib_is_true_bool(b::Bool)
     ccall((:rustdylib_is_true_bool, librustdylib), Bool, (Bool,), b)
 end

@@ -6,6 +6,7 @@ pub extern fn rustdylib_printhello() {
 
 #[no_mangle]
 pub extern fn rustdylib_abs_i32(i: i32) -> i32 {
+    println!("Rust read i32 `{:?}`.", i);
     if i >= 0 {
         i
     } else {
@@ -15,6 +16,7 @@ pub extern fn rustdylib_abs_i32(i: i32) -> i32 {
 
 #[no_mangle]
 pub extern fn rustdylib_abs_i64(i: i64) -> i64 {
+    println!("Rust read i64 `{:?}`.", i);
     if i >= 0 {
         i
     } else {
@@ -23,7 +25,28 @@ pub extern fn rustdylib_abs_i64(i: i64) -> i64 {
 }
 
 #[no_mangle]
+pub extern fn rustdylib_abs_f32(i: f32) -> f32 {
+    println!("Rust read f32 `{:?}`.", i);
+    if i >= 0.0 {
+        i
+    } else {
+        -i
+    }
+}
+
+#[no_mangle]
+pub extern fn rustdylib_abs_f64(i: f64) -> f64 {
+    println!("Rust read f64 `{:?}`.", i);
+    if i >= 0.0 {
+        i
+    } else {
+        -i
+    }
+}
+
+#[no_mangle]
 pub extern fn rustdylib_is_true_bool(b: bool) -> bool {
+    println!("Rust read bool `{:?}`.", b);
     b
 }
 
