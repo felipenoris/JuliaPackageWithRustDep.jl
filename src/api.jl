@@ -12,11 +12,11 @@ function rustdylib_abs_i64(n::Int64)
 end
 
 function rustdylib_abs_f32(n::Float32)
-	ccall((:rustdylib_abs_f32, librustdylib), Float32, (Float32,), n)
+    ccall((:rustdylib_abs_f32, librustdylib), Float32, (Float32,), n)
 end
 
 function rustdylib_abs_f64(n::Float64)
-	ccall((:rustdylib_abs_f64, librustdylib), Float64, (Float64,), n)
+    ccall((:rustdylib_abs_f64, librustdylib), Float64, (Float64,), n)
 end
 
 function rustdylib_is_true_bool(b::Bool)
