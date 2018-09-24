@@ -18,7 +18,7 @@
 julia> using JuliaPackageWithRustDep
 [ Info: Recompiling stale cache file /Users/felipenoris/.julia/compiled/v1.0/JuliaPackageWithRustDep/JYL3H.ji for JuliaPackageWithRustDep [b3cfa77a-c005-11e8-2503-c57ef66cec51]
 
-julia> JuliaPackageWithRustDep.run()
+julia> JuliaPackageWithRustDep.rustdylib_printhello()
 Hello from Rust!
 ```
 
