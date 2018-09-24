@@ -4,3 +4,8 @@ version = "0.1.0"
 authors = ["Felipe Noronha <felipenoris@gmail.com>"]
 
 [dependencies]
+
+[lib]
+name = "rustdylib"
+crate-type = ["staticlib", "cdylib"]
+

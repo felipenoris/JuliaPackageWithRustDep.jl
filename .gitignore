@@ -1,0 +1,7 @@
+deps/RustDylib/Cargo.lock
+deps/release
+deps/deps.jl
+deps/.rustc_info.json
+deps/*.dylib
+deps/*.so
+
