@@ -1,0 +1,4 @@
+
+import JuliaPackageWithRustDep
+
+JuliaPackageWithRustDep.rustdylib_printhello()

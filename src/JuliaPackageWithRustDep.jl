@@ -11,8 +11,6 @@ function __init__()
     check_deps()
 end
 
-function run()
-	ccall((:print_hello_world_from_rust, librustdylib), Cvoid, ())
-end
+include("api.jl")
 
 end # module

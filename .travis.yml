@@ -1,0 +1,20 @@
+language: julia
+
+julia:
+  - 1.0
+
+os:
+  - linux
+  - osx
+
+before_install:
+  - curl https://sh.rustup.rs -sSf | sh -s -- -y
+
+env:
+  - JULIA_PROJECT="@."
+
+notifications:
+  email: false
+
+before_script:
+  - source $HOME/.cargo/env

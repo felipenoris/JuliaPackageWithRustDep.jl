@@ -4,4 +4,4 @@ deps/deps.jl
 deps/.rustc_info.json
 deps/*.dylib
 deps/*.so
-
+deps/build.log
