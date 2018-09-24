@@ -34,4 +34,6 @@ $ cargo new RustDylib --lib
 
 * [Exposing a Rust Library to C](http://greyblake.com/blog/2017/08/10/exposing-rust-library-to-c/)
 
+* [std::ffi docs](https://doc.rust-lang.org/std/ffi/index.html)
+
 * [Rust FFI Guide](https://michael-f-bryan.github.io/rust-ffi-guide/)

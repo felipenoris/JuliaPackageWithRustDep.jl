@@ -10,3 +10,11 @@ end
 function rustdylib_abs_i64(n::Int64)
     ccall((:rustdylib_abs_i64, librustdylib), Int64, (Int64,), n)
 end
+
+function rustdylib_is_true_bool(b::Bool)
+    ccall((:rustdylib_is_true_bool, librustdylib), Bool, (Bool,), b)
+end
+
+function rustdylib_inspect_string(s::String)
+    ccall((:rustdylib_inspect_string, librustdylib), Cvoid, (Cstring,), s)
+end
