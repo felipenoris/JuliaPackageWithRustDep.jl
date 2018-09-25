@@ -10,6 +10,9 @@
 
 This package is a set of examples on how to embed a Rust library in a Julia pacakge.
 
+The build script `deps/build.jl` uses cargo to build the Rust library `deps/RustDylib`.
+Julia bindings to the Rust API are implemented in `api.jl` file.
+
 ## Requirements
 
 * Julia v1.0
