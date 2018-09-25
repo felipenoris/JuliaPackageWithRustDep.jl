@@ -19,12 +19,10 @@
 ```julia
 julia> using Pkg
 
-julia> Pkg.add("https://github.com/felipenoris/JuliaPackageWithRustDep.jl.git")
+julia> pkg"add https://github.com/felipenoris/JuliaPackageWithRustDep.jl.git"
 
-julia> using JuliaPackageWithRustDep
+julia> Pkg.test("JuliaPackageWithRustDep")
 
-julia> JuliaPackageWithRustDep.rustdylib_printhello()
-Hello from Rust!
 ```
 
 ## Primitive Type Correspondences
