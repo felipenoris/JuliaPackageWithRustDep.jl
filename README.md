@@ -8,10 +8,14 @@
 [travis-img]: https://img.shields.io/travis/felipenoris/JuliaPackageWithRustDep.jl/master.svg?label=Linux+/+macOS
 [travis-url]: https://travis-ci.org/felipenoris/JuliaPackageWithRustDep.jl
 
-This package is a set of examples on how to embed a Rust library in a Julia pacakge.
+This is a set of examples on how to embed a Rust library in a Julia package.
 
 The build script `deps/build.jl` uses cargo to build the Rust library `deps/RustDylib`.
-Julia bindings to the Rust API are implemented in `api.jl` file.
+Julia bindings to the Rust API are implemented in `src/api.jl` file.
+
+If the Rust library build is successful during `Pkg.build`, the file `deps/deps.jl` is generated,
+and the package `__init__` function will call `check_deps` to check if the Rust dynamic library
+is callable. This follows the same convention used by **[BinaryProvider.jl](https://github.com/JuliaPackaging/BinaryProvider.jl)**.
 
 ## Requirements
 
