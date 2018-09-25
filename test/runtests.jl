@@ -28,5 +28,7 @@ using Test
     @test JuliaPackageWithRustDep.rustdylib_is_true_bool(false) == false
 
     JuliaPackageWithRustDep.rustdylib_inspect_string("hey you")
-    JuliaPackageWithRustDep.rustdylib_inspect_string("é∈δ")
+    JuliaPackageWithRustDep.rustdylib_inspect_string("😻   é∈δ")
+
+    println("Julia read: ", JuliaPackageWithRustDep.rustdylib_pass_rust_owned_string())
 end
