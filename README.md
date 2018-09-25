@@ -8,6 +8,8 @@
 [travis-img]: https://img.shields.io/travis/felipenoris/JuliaPackageWithRustDep.jl/master.svg?label=Linux+/+macOS
 [travis-url]: https://travis-ci.org/felipenoris/JuliaPackageWithRustDep.jl
 
+This package is a set of examples on how to embed a Rust library in a Julia pacakge.
+
 ## Requirements
 
 * Julia v1.0
