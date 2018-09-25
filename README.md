@@ -9,6 +9,8 @@
 [travis-url]: https://travis-ci.org/felipenoris/JuliaPackageWithRustDep.jl
 
 This is a set of examples on how to embed a Rust library in a Julia package.
+Interfacing between Julia and Rust library is done using Rust's FFI:
+the Rust library is exposed as a C dynamic library, and Julia will call Rust functions using `ccall`.
 
 The build script `deps/build.jl` uses cargo to build the Rust library `deps/RustDylib`.
 Julia bindings to the Rust API are implemented in `src/api.jl` file.
