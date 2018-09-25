@@ -72,13 +72,13 @@ pub extern fn rustdylib_inspect_string(cstring: *const c_char) {
 pub extern fn rustdylib_generate_rust_owned_string() -> *mut c_char {
     let rust_string = String::from("The bomb: 💣");
     let cstring = CString::new(rust_string).unwrap();
-    cstring.into_raw()
+    cstring.into_raw() // transfers ownership to the Julia process
 }
 
 #[no_mangle]
 pub extern fn rustdylib_free_rust_owned_string(s: *mut c_char) {
     unsafe {
         if s.is_null() { return }
-        CString::from_raw(s)
+        CString::from_raw(s) // retakes ownership of the CString
     };
 }
