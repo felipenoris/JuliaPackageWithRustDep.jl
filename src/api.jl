@@ -27,9 +27,9 @@ function rustdylib_inspect_string(s::String)
     ccall((:rustdylib_inspect_string, librustdylib), Cvoid, (Cstring,), s)
 end
 
-function rustdylib_pass_rust_owned_string() :: String
-	cstring = ccall((:rustdylib_pass_rust_owned_string, librustdylib), Ptr{UInt8}, ())
-	result = unsafe_string(cstring)
-	ccall((:rustdylib_free_rust_owned_string, librustdylib), Cvoid, (Ptr{UInt8},), cstring)
-	return result
+function rustdylib_generate_rust_owned_string() :: String
+    cstring = ccall((:rustdylib_generate_rust_owned_string, librustdylib), Ptr{UInt8}, ())
+    result = unsafe_string(cstring)
+    ccall((:rustdylib_free_rust_owned_string, librustdylib), Cvoid, (Ptr{UInt8},), cstring)
+    return result
 end

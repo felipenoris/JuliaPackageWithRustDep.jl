@@ -1,10 +1,4 @@
 
-// enables Vec::new() for static variables (rust nightly)
-#![feature(const_vec_new)]
-
-// enables vector.remove_item(item) (rust nightly)
-#![feature(vec_remove_item)]
-
 use std::ffi::{CString, CStr};
 use std::os::raw::c_char;
 
@@ -74,30 +68,17 @@ pub extern fn rustdylib_inspect_string(cstring: *const c_char) {
     }
 }
 
-// tracks strings created by rustdylib_pass_rust_owned_string
-// until rustdylib_free_rust_owned_string is called.
-static mut ALLOCATED_STRINGS: Vec<CString> = Vec::new();
-
-//Passing a Rust-originating C string:
 #[no_mangle]
-pub extern fn rustdylib_pass_rust_owned_string() -> *const c_char {
-    let s = CString::new("rust-originating string").unwrap();
-    let ptr = s.as_ptr();
-    unsafe{ ALLOCATED_STRINGS.push(s); } // moves s
-    ptr
+pub extern fn rustdylib_generate_rust_owned_string() -> *mut c_char {
+    let rust_string = String::from("The bomb: 💣");
+    let cstring = CString::new(rust_string).unwrap();
+    cstring.into_raw()
 }
 
 #[no_mangle]
-pub extern fn rustdylib_free_rust_owned_string(ptr: *const c_char) {
+pub extern fn rustdylib_free_rust_owned_string(s: *mut c_char) {
     unsafe {
-        println!("ALLOCATED_STRINGS len was: {:?}", ALLOCATED_STRINGS.len());
-        for s in ALLOCATED_STRINGS.iter() {
-            if s.as_ptr() == ptr {
-                println!("Freeing string {:?}", s);
-                ALLOCATED_STRINGS.remove_item(s);
-                break;
-            }
-        }
-        println!("ALLOCATED_STRINGS len after removing item: {:?}", ALLOCATED_STRINGS.len());
-    }
+        if s.is_null() { return }
+        CString::from_raw(s)
+    };
 }

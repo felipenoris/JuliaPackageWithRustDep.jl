@@ -23,7 +23,7 @@ is callable. This follows the same convention used by **[BinaryProvider.jl](http
 
 * Julia v1.0
 
-* Rust Nightly
+* Rust Stable
 
 ## Installation
 
@@ -79,38 +79,26 @@ pub extern fn rustdylib_inspect_string(cstring: *const c_char) {
 
 ## Returning a Rust Owned String to Julia
 
-In this example, the Rust Owned String created by `rustdylib_pass_rust_owned_string`
-is kept in a global variable `ALLOCATED_STRINGS` to ensure that
-the reference is still valid until the Julia process calls Rust's
-`rustdylib_free_rust_owned_string` function to free the String.
+In this example, the Rust generates a owned string with `rustdylib_generate_rust_owned_string`
+and the ownership it transfered to the Julia process.
+
+After being consumed, the Julia process must transfer the ownership back to Rust
+by calling `rustdylib_free_rust_owned_string`, to let the memory be freed.
 
 ```rust
-// tracks strings created by rustdylib_pass_rust_owned_string
-// until rustdylib_free_rust_owned_string is called.
-static mut ALLOCATED_STRINGS: Vec<CString> = Vec::new();
-
-//Passing a Rust-originating C string:
 #[no_mangle]
-pub extern fn rustdylib_pass_rust_owned_string() -> *const c_char {
-    let s = CString::new("rust-originating string").unwrap();
-    let ptr = s.as_ptr();
-    unsafe{ ALLOCATED_STRINGS.push(s); } // moves s
-    ptr
+pub extern fn rustdylib_generate_rust_owned_string() -> *mut c_char {
+    let rust_string = String::from("The bomb: 💣");
+    let cstring = CString::new(rust_string).unwrap();
+    cstring.into_raw()
 }
 
 #[no_mangle]
-pub extern fn rustdylib_free_rust_owned_string(ptr: *const c_char) {
+pub extern fn rustdylib_free_rust_owned_string(s: *mut c_char) {
     unsafe {
-        println!("ALLOCATED_STRINGS len was: {:?}", ALLOCATED_STRINGS.len());
-        for s in ALLOCATED_STRINGS.iter() {
-            if s.as_ptr() == ptr {
-                println!("Freeing string {:?}", s);
-                ALLOCATED_STRINGS.remove_item(s);
-                break;
-            }
-        }
-        println!("ALLOCATED_STRINGS len after removing item: {:?}", ALLOCATED_STRINGS.len());
-    }
+        if s.is_null() { return }
+        CString::from_raw(s)
+    };
 }
 ```
 
