@@ -11,6 +11,8 @@ function __init__()
     check_deps()
 end
 
+include("api_common.jl")
 include("api.jl")
+
 
 end # module

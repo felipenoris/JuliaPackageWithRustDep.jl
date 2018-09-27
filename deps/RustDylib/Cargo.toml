@@ -2,6 +2,7 @@
 name = "RustDylib"
 version = "0.1.0"
 authors = ["Felipe Noronha <felipenoris@gmail.com>"]
+build="build/build.rs"
 
 [dependencies]
 
@@ -9,3 +10,6 @@ authors = ["Felipe Noronha <felipenoris@gmail.com>"]
 name = "rustdylib"
 crate-type = ["staticlib", "cdylib"]
 
+[build-dependencies]
+
+cbindgen = "0.6.3"
