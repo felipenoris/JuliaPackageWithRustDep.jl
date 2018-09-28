@@ -4,8 +4,8 @@
 [![License][license-img]](LICENSE)
 [![travis][travis-img]][travis-url]
 
-[license-img]: http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat
-[travis-img]: https://img.shields.io/travis/felipenoris/JuliaPackageWithRustDep.jl/master.svg?label=Linux+/+macOS
+[license-img]: http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[travis-img]: https://img.shields.io/travis/felipenoris/JuliaPackageWithRustDep.jl/master.svg?label=Linux+/+macOS&style=flat-square
 [travis-url]: https://travis-ci.org/felipenoris/JuliaPackageWithRustDep.jl
 
 This is a set of examples on how to embed a Rust library in a Julia package.
