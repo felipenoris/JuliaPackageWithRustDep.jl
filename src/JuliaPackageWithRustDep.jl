@@ -14,10 +14,10 @@ end
 include("api.jl")
 
 function read_rust_owned_string() :: String
-	cstring = rustdylib_generate_rust_owned_string()
-	result = unsafe_string(cstring)
-	rustdylib_free_rust_owned_string(cstring)
-	return result
+    cstring = rustdylib_generate_rust_owned_string()
+    result = unsafe_string(cstring) # copies the contents of the string
+    rustdylib_free_rust_owned_string(cstring) # ask Rust to free the memory
+    return result
 end
 
 end # module
