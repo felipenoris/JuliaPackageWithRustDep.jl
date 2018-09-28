@@ -30,5 +30,5 @@ using Test
     JuliaPackageWithRustDep.rustdylib_inspect_string("hey you")
     JuliaPackageWithRustDep.rustdylib_inspect_string("😻   é∈δ")
 
-    println("Julia read: ", JuliaPackageWithRustDep.rustdylib_generate_rust_owned_string())
+    println("Julia read: ", JuliaPackageWithRustDep.read_rust_owned_string())
 end

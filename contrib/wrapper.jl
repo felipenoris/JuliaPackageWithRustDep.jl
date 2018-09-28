@@ -1,3 +1,7 @@
+
+# script to generate api.jl
+# depends on package Clang = "40e3b903-d033-50b4-a0cc-940c62c95e31"
+
 using Clang
 
 dir = splitdir(@__FILE__)[1]

@@ -11,8 +11,13 @@ function __init__()
     check_deps()
 end
 
-include("api_common.jl")
 include("api.jl")
 
+function read_rust_owned_string() :: String
+	cstring = rustdylib_generate_rust_owned_string()
+	result = unsafe_string(cstring)
+	rustdylib_free_rust_owned_string(cstring)
+	return result
+end
 
 end # module
