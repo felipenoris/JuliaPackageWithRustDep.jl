@@ -106,11 +106,19 @@ In the Julia process, the pointer to string is copied to a new `String` instance
 Then, Julia asks Rust to free the string.
 
 ```julia
-function rustdylib_pass_rust_owned_string() :: String
-	cstring = ccall((:rustdylib_pass_rust_owned_string, librustdylib), Ptr{UInt8}, ())
-	result = unsafe_string(cstring) # copies the contents of the string
-	ccall((:rustdylib_free_rust_owned_string, librustdylib), Cvoid, (Ptr{UInt8},), cstring) # ask Rust to free the memory
-	return result
+function rustdylib_free_rust_owned_string(s::Cstring)
+    ccall((:rustdylib_free_rust_owned_string, librustdylib), Cvoid, (Cstring,), s)
+end
+
+function rustdylib_generate_rust_owned_string()
+    ccall((:rustdylib_generate_rust_owned_string, librustdylib), Cstring, ())
+end
+
+function read_rust_owned_string() :: String
+    cstring = rustdylib_generate_rust_owned_string()
+    result = unsafe_string(cstring) # copies the contents of the string
+    rustdylib_free_rust_owned_string(cstring) # ask Rust to free the memory
+    return result
 end
 ```
 

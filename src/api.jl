@@ -18,7 +18,7 @@ function rustdylib_abs_i64(i::Int64)
     ccall((:rustdylib_abs_i64, librustdylib), Int64, (Int64,), i)
 end
 
-function rustdylib_free_rust_owned_string(s)
+function rustdylib_free_rust_owned_string(s::Cstring)
     ccall((:rustdylib_free_rust_owned_string, librustdylib), Cvoid, (Cstring,), s)
 end
 
