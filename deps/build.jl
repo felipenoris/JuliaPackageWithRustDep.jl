@@ -5,7 +5,8 @@ const rustprojname = "RustDylib"
 const rustlibname = "rustdylib"
 const juliapackage = "JuliaPackageWithRustDep"
 
-const libname = "lib" * rustlibname
+const libname = Sys.iswindows() ? rustlibname : "lib" * rustlibname
+# Windows .dlls do not have the "lib" prefix
 
 function build_dylib()
     clean()
@@ -28,6 +29,8 @@ function dylib_filename()
         "$libname.dylib"
     elseif Sys.islinux()
         "$libname.so"
+    elseif Sys.iswindows()
+        "$libname.dll"
     else
         error("Not supported: $(Sys.KERNEL)")
     end
