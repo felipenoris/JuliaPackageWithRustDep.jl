@@ -80,7 +80,7 @@ pub extern fn rustdylib_inspect_string(cstring: *const c_char) {
 ## Returning a Rust Owned String to Julia
 
 In this example, the Rust generates a owned string with `rustdylib_generate_rust_owned_string`
-and the ownership it transfered to the Julia process.
+and the ownership is transfered to the Julia process.
 
 After being consumed, the Julia process must transfer the ownership back to Rust
 by calling `rustdylib_free_rust_owned_string`, to let the memory be freed.
