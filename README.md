@@ -100,12 +100,10 @@ pub extern fn rustdylib_generate_rust_owned_string() -> *mut c_char {
 }
 
 #[no_mangle]
-pub extern fn rustdylib_free_rust_owned_string(s: *mut c_char) {
-    unsafe {
-        if !s.is_null() {
-            drop(CString::from_raw(s)) // retakes ownership of the CString and drop
-        }
-    };
+pub unsafe extern fn rustdylib_free_rust_owned_string(s: *mut c_char) {
+    if !s.is_null() {
+        drop(CString::from_raw(s)) // retakes ownership of the CString and drop
+    }
 }
 ```
 
