@@ -61,6 +61,9 @@ In Rust, the pointer to thar `*const c_char` is converted to a `CStr`, which is 
 From a `CStr`, you can convert it to a regular `&str`.
 
 ```rust
+use std::ffi::CStr;
+use std::os::raw::c_char;
+
 #[no_mangle]
 pub extern fn rustdylib_inspect_string(cstring: *const c_char) {
     let cstr = unsafe { CStr::from_ptr(cstring) };
@@ -86,6 +89,9 @@ After being consumed, the Julia process must transfer the ownership back to Rust
 by calling `rustdylib_free_rust_owned_string`, to let the memory be freed.
 
 ```rust
+use std::ffi::CString;
+use std::os::raw::c_char;
+
 #[no_mangle]
 pub extern fn rustdylib_generate_rust_owned_string() -> *mut c_char {
     let rust_string = String::from("The bomb: 💣");
@@ -96,8 +102,9 @@ pub extern fn rustdylib_generate_rust_owned_string() -> *mut c_char {
 #[no_mangle]
 pub extern fn rustdylib_free_rust_owned_string(s: *mut c_char) {
     unsafe {
-        if s.is_null() { return }
-        CString::from_raw(s) // retakes ownership of the CString
+        if !s.is_null() {
+            drop(CString::from_raw(s)) // retakes ownership of the CString and drop
+        }
     };
 }
 ```
