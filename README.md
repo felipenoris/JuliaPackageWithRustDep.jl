@@ -134,3 +134,5 @@ end
 * [std::ffi docs](https://doc.rust-lang.org/std/ffi/index.html)
 
 * [Rust FFI Guide](https://michael-f-bryan.github.io/rust-ffi-guide/)
+
+* [Rust FFI Omnibus](http://jakegoulding.com/rust-ffi-omnibus)
