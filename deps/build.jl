@@ -5,8 +5,8 @@ const rustprojname = "RustDylib"
 const rustlibname = "rustdylib"
 const juliapackage = "JuliaPackageWithRustDep"
 
-const libname = Sys.iswindows() ? rustlibname : "lib" * rustlibname
 # Windows .dlls do not have the "lib" prefix
+const libname = Sys.iswindows() ? rustlibname : "lib" * rustlibname
 
 function build_dylib()
     clean()

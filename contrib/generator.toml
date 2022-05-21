@@ -1,0 +1,3 @@
+[general]
+library_name = "librustdylib"
+output_file_path = "./api.jl"
