@@ -6,5 +6,4 @@ deps/*.dylib
 deps/*.so
 deps/build.log
 deps/RustDylib/target
-deps/RustDylib/include
 Manifest.toml

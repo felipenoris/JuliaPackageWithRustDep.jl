@@ -1,6 +1,7 @@
 [package]
 name = "RustDylib"
 version = "0.1.0"
+edition = "2021"
 authors = ["Felipe Noronha <felipenoris@gmail.com>"]
 build="build/build.rs"
 
@@ -11,5 +12,4 @@ name = "rustdylib"
 crate-type = ["staticlib", "cdylib"]
 
 [build-dependencies]
-
-cbindgen = "0.6.3"
+cbindgen = "0.23"
